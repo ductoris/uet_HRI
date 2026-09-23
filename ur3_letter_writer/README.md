@@ -103,23 +103,6 @@ ros2 launch ur3_letter_writer draw_circle.launch.py
   ros2 launch ur3_letter_writer draw_circle.launch.py radius:=0.10 center_y:=0.35 num_cycles:=2
   ```
 
----
-
-## Hướng dẫn quay video nộp bài (Upload Google Drive chia sẻ công khai)
-
-1. **Chuẩn bị màn hình quan sát**:
-   - Mở đồng thời cả 2 cửa sổ: **Gazebo** (quan sát robot 3D) và **RViz** (quan sát vệt Marker quỹ đạo).
-   - Trong RViz, topic `/drawn_circle_marker` (hoặc `/drawn_letter_marker`) sẽ tự động hiển thị vệt vẽ màu neon rất nổi bật.
-2. **Quay video màn hình trên Ubuntu**:
-   - Nhấn tổ hợp phím `Ctrl + Alt + Shift + R` (hoặc dùng công cụ `SimpleScreenRecorder` / `OBS Studio` / phím chụp màn hình `PrintScreen` chọn chế độ Video).
-   - Chạy lệnh ở Terminal 2 để robot thực hiện chu trình vẽ.
-   - Khi robot hoàn thành và quay về `home`, dừng quay video.
-3. **Upload Google Drive & Chia sẻ công khai**:
-   - Tải file video (`.mp4` / `.webm`) lên Google Drive của bạn.
-   - Nhấp chuột phải vào video $\to$ chọn **Chia sẻ (Share)** $\to$ chuyển từ **Bị hạn chế (Restricted)** sang **Bất kỳ ai có đường liên kết (Anyone with the link)** với quyền **Người xem (Viewer)**.
-   - Sao chép đường liên kết và nộp bài.
-
----
 
 ## Pipeline xử lý ảnh trong `image_letter_writer_node`
 
