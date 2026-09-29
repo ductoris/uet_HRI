@@ -1,0 +1,36 @@
+# =============================================================================
+# student_config.yaml — Thông tin sinh viên & ánh xạ mục tiêu
+# =============================================================================
+# Sinh viên: Mai Duc Tri
+# MSSV:      23020776
+# XX (2 số cuối): 76
+# P = XX mod 6 = 76 mod 6 = 4
+#
+# Bảng hoán vị:
+#   P=0: Zone A=red,    Zone B=yellow, Zone C=blue
+#   P=1: Zone A=red,    Zone B=blue,   Zone C=yellow
+#   P=2: Zone A=yellow, Zone B=red,    Zone C=blue
+#   P=3: Zone A=yellow, Zone B=blue,   Zone C=red
+#   P=4: Zone A=blue,   Zone B=red,    Zone C=yellow   ← ÁP DỤNG
+#   P=5: Zone A=blue,   Zone B=yellow, Zone C=red
+# =============================================================================
+
+student:
+  name: "Mai Duc Tri"
+  mssv: "23020776"
+  last_two_digits: 76
+  P: 4
+
+# Ánh xạ mục tiêu cụ thể theo P = 4
+target_assignment:
+  zone_a: "blue_cube"      # Zone A ← blue_cube
+  zone_b: "red_cube"       # Zone B ← red_cube
+  zone_c: "yellow_cube"    # Zone C ← yellow_cube
+
+# Lệnh kích hoạt sắp xếp theo MSSV
+trigger_phrases:
+  - "arrange according to my student id"
+  - "arrange all objects according to my student id"
+  - "sap xep theo mssv"
+  - "arrange by mssv"
+  - "arrange by student id"

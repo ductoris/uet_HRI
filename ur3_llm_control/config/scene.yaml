@@ -1,0 +1,76 @@
+# =============================================================================
+# scene.yaml — Mô tả môi trường thao tác cho UR3/UR3e
+# Khớp 100% vị trí bàn thật trong Gazebo (Bàn ở X = +0.43m phía bên phải)
+# =============================================================================
+
+frame_id: base_link
+robot_base_height: 0.74
+
+# --- Bàn làm việc (collision object trong MoveIt) ---
+table:
+  position: {x: 0.43, y: 0.0, z: -0.02}
+  dimensions: {length: 0.64, width: 0.84, depth: 0.04}
+
+# --- Chiều cao an toàn ---
+heights:
+  table_surface: 0.0          # Mặt bàn z = 0.0m (hệ base_link)
+  cube_size: 0.04             # Cạnh khối lập phương 4.0 cm
+  grasp_z: 0.09               # Độ cao gắp an toàn trên mặt bàn (tool0 z = 0.09m)
+  approach_z: 0.22            # Độ cao tiếp cận trên không (z = 0.22m)
+  retreat_z: 0.22             # Độ cao rút lên (z = 0.22m)
+  safe_z: 0.25                # Độ cao di chuyển giữa các khay
+
+# --- Vị trí các khối lập phương (Đặt chính xác trên mặt bàn Gazebo X = +0.30m) ---
+objects:
+  red_cube:
+    position: {x: 0.30, y: -0.27, z: 0.02}
+    color: {r: 1.0, g: 0.0, b: 0.0, a: 1.0}
+    size: 0.04
+
+  yellow_cube:
+    position: {x: 0.30, y: 0.00, z: 0.02}
+    color: {r: 1.0, g: 1.0, b: 0.0, a: 1.0}
+    size: 0.04
+
+  blue_cube:
+    position: {x: 0.30, y: 0.27, z: 0.02}
+    color: {r: 0.0, g: 0.0, b: 1.0, a: 1.0}
+    size: 0.04
+
+# --- Vùng đặt mục tiêu (Đặt chính xác trên mặt bàn Gazebo X = +0.45m) ---
+zones:
+  zone_a:
+    position: {x: 0.45, y: 0.27, z: 0.0025}
+    label: "Zone A"
+
+  zone_b:
+    position: {x: 0.45, y: -0.27, z: 0.0025}
+    label: "Zone B"
+
+  zone_c:
+    position: {x: 0.45, y: 0.00, z: 0.0025}
+    label: "Zone C"
+
+  temp_zone:
+    position: {x: 0.30, y: -0.12, z: 0.0025}
+    label: "Temporary / Buffer Zone"
+
+  buffer:
+    position: {x: 0.30, y: -0.12, z: 0.0025}
+    label: "Buffer Zone"
+
+# --- Cấu hình khớp an toàn (Home Position quay trực diện ra bàn +X) ---
+home_joint_values:
+  - 0.0        # shoulder_pan_joint (quay trực diện về chiếc bàn phía trước +X)
+  - -1.5708    # shoulder_lift_joint
+  - 1.5708     # elbow_joint
+  - -1.5708    # wrist_1_joint
+  - -1.5708    # wrist_2_joint
+  - 0.0        # wrist_3_joint
+
+# --- Orientation mặc định cho tool hướng xuống (-Z) ---
+tool_orientation:
+  x: 0.7071
+  y: 0.7071
+  z: 0.0
+  w: 0.0
