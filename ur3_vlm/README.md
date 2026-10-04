@@ -6,11 +6,6 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-**Sinh viên thực hiện:** Mai Đức Trí  
-**MSSV:** 23020776  
-**Khóa:** K68 - Đại học Công nghệ, ĐHQGHN (VNU-UET)  
-**Môn học:** Tương tác Người - Robot (Human-Robot Interaction)  
-**Giảng viên phụ trách:** PGS.TS. Hoàng Văn Xiêm, KS. Nguyễn Quốc Bảo  
 
 ---
 
