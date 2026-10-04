@@ -124,9 +124,3 @@ python3 src/ur3_vlm/test_percep.py
 | **Tư thế an toàn** | `Đưa robot về vị trí an toàn` | `Go back to home position.` |
 
 ---
-
-## 📊 Thông tin Tác giả & Repository
-- **Sinh viên:** Mai Đức Trí (MSSV: `23020776`)
-- **Lớp / Khóa:** K68 - Trường Đại học Công nghệ, ĐHQGHN
-- **GitHub Repository:** [uet_HRI](https://github.com/ductoris/uet_HRI)
-- **Báo cáo LaTeX:** [`ur3_vlm_report.tex`](./ur3_vlm_report.tex)
