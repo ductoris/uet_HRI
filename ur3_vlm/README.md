@@ -48,7 +48,6 @@ ur3_vlm/
 ├── setup.py                          # Cấu hình entry points và share data files
 ├── setup.cfg                         # Cấu hình cài đặt
 ├── test_percep.py                    # Script kiểm thử độc lập pipeline thị giác
-├── ur3_vlm_report.tex                # Báo cáo học phần Tuần 3 định dạng LaTeX chi tiết
 ├── README.md                         # Tài liệu hướng dẫn sử dụng
 ├── config/
 │   └── scene.yaml                    # Thông số hình học môi trường, camera, khay & khối
@@ -124,3 +123,12 @@ python3 src/ur3_vlm/test_percep.py
 | **Tư thế an toàn** | `Đưa robot về vị trí an toàn` | `Go back to home position.` |
 
 ---
+<<<<<<< HEAD
+=======
+
+## 📊 Thông tin Tác giả & Repository
+- **Sinh viên:** Mai Đức Trí (MSSV: `23020776`)
+- **Lớp / Khóa:** K68 - Trường Đại học Công nghệ, ĐHQGHN
+- **GitHub Repository:** [uet_HRI](https://github.com/ductoris/uet_HRI)
+
+>>>>>>> f91c6de (Remove LaTeX report file from repository and update .gitignore)

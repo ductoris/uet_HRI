@@ -11,7 +11,10 @@ log/
 # Pytest cache
 .pytest_cache/
 
-# LaTeX auxiliary files (keep .tex)
+# LaTeX artifacts and report files
+*.tex
 *.aux
+*.log
 *.out
+*.toc
 *.synctex.gz
