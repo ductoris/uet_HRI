@@ -1,0 +1,161 @@
+# =============================================================================
+# scene.yaml — Mô tả môi trường thao tác cho UR3e + Gripper (Bài 03)
+#
+# HỆ TỌA ĐỘ:
+#   - Mọi tọa độ trong file này theo hệ BASE_LINK (REP-103, X+ về phía bàn).
+#   - base_link nằm tại đỉnh đế robot (pedestal), trùng mặt bàn.
+#   - Khi spawn vào Gazebo (world frame), scene_spawner tự cộng thêm
+#     robot_base_height vào Z.
+#
+# CHÚ Ý: File này CHỈ dùng bởi scene_spawner để khởi tạo thế giới mô phỏng.
+#   Planner / WorldState / RobotSkills KHÔNG ĐƯỢC đọc tọa độ từ file này.
+#   Mọi thông tin vị trí phải lấy từ Camera Perception.
+#
+# Sinh viên: Mai Duc Tri | MSSV: 23020776
+# =============================================================================
+
+frame_id: base_link
+
+# Chiều cao đế robot tính từ sàn (world z=0) lên mặt đế (base_link z=0)
+robot_base_height: 0.74
+
+# --- Bàn làm việc 4 chân (collision object trong MoveIt) ---
+# Tọa độ trong hệ base_link: mặt bàn ngang tầm base_link (x=0.43 cách robot base an toàn)
+table:
+  position: {x: 0.43, y: 0.0, z: -0.02}   # Tâm mặt bàn, z = -0.02 để mặt trên = 0.0
+  dimensions:
+    length: 0.64    # Chiều dọc (theo X) -> mép gần robot ở X = 0.43 - 0.32 = 0.11m (không chạm robot)
+    width: 0.84     # Chiều ngang (theo Y)
+    depth: 0.04     # Độ dày mặt bàn
+  leg:
+    width: 0.04     # Tiết diện chân bàn (vuông)
+    inset: 0.04     # Khoảng lùi chân vào so với mép bàn
+
+# --- Đế robot (pedestal) ---
+pedestal:
+  radius: 0.06     # Bán kính đế hình trụ
+  color: {r: 0.35, g: 0.35, b: 0.38}  # Xám thép
+
+# --- Khung giá đỡ camera (camera stand rig) ---
+# Thanh đứng từ mặt bàn + thanh ngang vươn ra + đầu gắn camera
+camera_rig:
+  # Chân đứng: gắn vào cạnh bàn phía xa robot
+  vertical_post:
+    position: {x: 0.74, y: 0.0}    # Cạnh bàn phía xa robot (base_link)
+    height: 0.90                     # Chiều cao thanh đứng tính từ mặt bàn (nâng cao thoáng)
+    width: 0.03                      # Tiết diện thanh vuông
+  # Thanh ngang: vươn từ đỉnh thanh đứng về phía bàn
+  horizontal_arm:
+    length: 0.34                     # Chiều dài thanh ngang
+    width: 0.03
+  # Camera mount: đầu gắn camera ở cuối thanh ngang
+  camera_mount:
+    width: 0.05
+    depth: 0.05
+    height: 0.03
+  color: {r: 0.25, g: 0.25, b: 0.28}  # Xám đậm (nhôm định hình)
+
+# --- Camera (gắn trên giá đỡ, nhìn thẳng xuống bàn) ---
+camera:
+  # Vị trí trong hệ base_link: treo chính xác dưới camera_mount tại Z = 0.84m
+  position: {x: 0.40, y: 0.0, z: 0.84}   # Ngay trên tâm vùng thao tác
+  # Camera nhìn thẳng xuống: pitch = π/2 (nghiêng xuống)
+  orientation_rpy: {roll: 0.0, pitch: 1.5708, yaw: 0.0}
+  # Thông số sensor
+  horizontal_fov: 1.047    # ~60 độ
+  image_width: 640
+  image_height: 480
+  clip_near: 0.05
+  clip_far: 5.0
+  update_rate: 15
+  # Topic names (sau ros_gz_bridge)
+  image_topic: /camera/image_raw
+  info_topic: /camera/camera_info
+
+# --- Chiều cao an toàn (hệ base_link) ---
+heights:
+  table_surface: 0.0          # Mặt bàn z = 0.0m (hệ base_link)
+  cube_size: 0.04             # Cạnh khối lập phương 4.0 cm
+  grasp_z: 0.09               # Độ cao gắp tool0 (sẽ cập nhật theo gripper TCP)
+  approach_z: 0.22            # Độ cao tiếp cận
+  retreat_z: 0.22             # Độ cao rút lên
+  safe_z: 0.25                # Độ cao di chuyển ngang an toàn
+
+# --- 5 khối lập phương (2 khối bên phải -Y, 3 khối bên trái +Y, đẩy xa gốc arm) ---
+# Static = false (vật lý động), mass nhẹ, ma sát cao
+objects:
+  # 2 khối lệch hẳn bên phải (-Y) phía xa arm:
+  red_cube:
+    position: {x: 0.34, y: -0.25, z: 0.02}
+    color: {r: 0.9, g: 0.1, b: 0.1, a: 1.0}
+    size: 0.04
+    mass: 0.03
+
+  yellow_cube:
+    position: {x: 0.30, y: -0.14, z: 0.02}
+    color: {r: 1.0, g: 0.85, b: 0.0, a: 1.0}
+    size: 0.04
+    mass: 0.03
+
+  # 3 khối để bên trái (+Y) phía xa arm:
+  blue_cube:
+    position: {x: 0.34, y: 0.25, z: 0.02}
+    color: {r: 0.1, g: 0.2, b: 0.9, a: 1.0}
+    size: 0.04
+    mass: 0.03
+
+  green_cube:
+    position: {x: 0.30, y: 0.14, z: 0.02}
+    color: {r: 0.1, g: 0.8, b: 0.2, a: 1.0}
+    size: 0.04
+    mass: 0.03
+
+  purple_cube:
+    position: {x: 0.38, y: 0.10, z: 0.02}
+    color: {r: 0.6, g: 0.1, b: 0.85, a: 1.0}
+    size: 0.04
+    mass: 0.03
+
+# --- 4 vùng đặt mục tiêu (3 zone chính A, B, C + 1 vùng tạm T) ---
+# Khay mỏng có viền màu TRUNG TÍNH (không trùng 5 màu khối) để camera phân biệt
+zones:
+  zone_a:
+    position: {x: 0.45, y: 0.20, z: 0.0025}
+    label: "Zone A"
+    border_color: {r: 1.0, g: 0.55, b: 0.0}     # Cam (Orange) — không trùng 5 màu khối
+
+  zone_b:
+    position: {x: 0.45, y: 0.0, z: 0.0025}
+    label: "Zone B"
+    border_color: {r: 0.0, g: 0.8, b: 0.75}      # Teal/Cyan — không trùng 5 màu khối
+
+  zone_c:
+    position: {x: 0.45, y: -0.20, z: 0.0025}
+    label: "Zone C"
+    border_color: {r: 0.85, g: 0.65, b: 0.85}    # Hồng nhạt (Mauve) — không trùng 5 màu khối
+
+  staging_area:
+    position: {x: 0.28, y: 0.0, z: 0.0025}
+    label: "Zone T"
+    border_color: {r: 0.6, g: 0.6, b: 0.6}       # Xám trung tính (Neutral Gray) cho Zone [T]
+
+# --- Thông số vùng zone (dùng cho perception kiểm tra chiếm dụng) ---
+zone_detection:
+  tray_size: 0.10         # Kích thước mặt khay mở rộng (10x10 cm, rất rộng rãi và dễ thao tác cho khối 4x4 cm)
+  occupancy_radius: 0.06  # Bán kính kiểm tra chiếm dụng: block cách tâm zone <= 6cm → tính là đã vào zone
+
+# --- Cấu hình khớp an toàn (Home Position) ---
+home_joint_values:
+  - 0.0        # shoulder_pan_joint (quay trực diện về bàn +X)
+  - -1.5708    # shoulder_lift_joint
+  - 1.5708     # elbow_joint
+  - -1.5708    # wrist_1_joint
+  - -1.5708    # wrist_2_joint
+  - 0.0        # wrist_3_joint
+
+# --- Orientation mặc định cho tool hướng xuống (-Z) ---
+tool_orientation:
+  x: 0.7071
+  y: 0.7071
+  z: 0.0
+  w: 0.0

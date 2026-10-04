@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# Pytest cache
+.pytest_cache/
+
+# LaTeX auxiliary files (keep .tex)
+*.aux
+*.out
+*.synctex.gz

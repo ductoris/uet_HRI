@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ur3_vlm</name>
+  <version>1.0.0</version>
+  <description>
+    Dieu khien robot UR3e bang Vision-Language Model (VLM).
+    Su dung Camera Perception + LLM Planner + MoveIt 2
+    de thuc thi chuyen dong an toan voi gripper vat ly that.
+    Sinh vien: Mai Duc Tri - MSSV: 23020776
+  </description>
+  <maintainer email="23020776@vnu.edu.vn">Mai Duc Tri</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- ROS 2 core -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>visualization_msgs</depend>
+
+  <!-- MoveIt 2 -->
+  <depend>moveit_msgs</depend>
+  <depend>moveit_ros_planning_interface</depend>
+
+  <!-- TF2 -->
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <!-- Collision objects -->
+  <depend>shape_msgs</depend>
+
+  <!-- Camera / Vision -->
+  <depend>cv_bridge</depend>
+
+  <!-- Gazebo bridge -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>ur_simulation_gz</exec_depend>
+  <exec_depend>ur_moveit_config</exec_depend>
+  <exec_depend>ur_description</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
