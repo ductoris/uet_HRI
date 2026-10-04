@@ -121,14 +121,3 @@ python3 src/ur3_vlm/test_percep.py
 | **Dỡ khối (Unstack)** | `Dỡ khối màu xanh lá chuyển sang vùng B` | `Unstack the green cube and place it into zone B.` |
 | **Sắp xếp theo MSSV** | `Sắp xếp các khối theo mã số sinh viên của tôi` | `Arrange all objects according to my student ID.` |
 | **Tư thế an toàn** | `Đưa robot về vị trí an toàn` | `Go back to home position.` |
-
----
-<<<<<<< HEAD
-=======
-
-## 📊 Thông tin Tác giả & Repository
-- **Sinh viên:** Mai Đức Trí (MSSV: `23020776`)
-- **Lớp / Khóa:** K68 - Trường Đại học Công nghệ, ĐHQGHN
-- **GitHub Repository:** [uet_HRI](https://github.com/ductoris/uet_HRI)
-
->>>>>>> f91c6de (Remove LaTeX report file from repository and update .gitignore)
